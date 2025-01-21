@@ -114,6 +114,7 @@ import { useElementSizeObserver } from '../../hooks/useElementSizeObserver';
 import { ReplyLayout, ThreadIndicator } from '../../components/message';
 import { roomToParentsAtom } from '../../state/room/roomToParents';
 import { useMediaAuthentication } from '../../hooks/useMediaAuthentication';
+import { isComposing } from '../../utils/keyboard';
 
 interface RoomInputProps {
   editor: Editor;
@@ -360,6 +361,9 @@ export const RoomInput = forwardRef<HTMLDivElement, RoomInputProps>(
 
     const handleKeyDown: KeyboardEventHandler = useCallback(
       (evt) => {
+        if (isComposing(evt.nativeEvent)) {
+          return;
+        }
         if (isKeyHotkey('mod+enter', evt) || (!enterForNewline && isKeyHotkey('enter', evt))) {
           evt.preventDefault();
           submit();
@@ -378,6 +382,9 @@ export const RoomInput = forwardRef<HTMLDivElement, RoomInputProps>(
 
     const handleKeyUp: KeyboardEventHandler = useCallback(
       (evt) => {
+        if (isComposing(evt.nativeEvent)) {
+          return
+        }
         if (isKeyHotkey('escape', evt)) {
           evt.preventDefault();
           return;
