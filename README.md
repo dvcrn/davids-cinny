@@ -7,6 +7,8 @@ It
 - Includes all rooms across all spaces in "Home"
 - Changes the default sorting across all spaces and "Home" to be by most recent activity 
     - Closing a section will still show the unread-only messages, sorted by most recent activity
+- Fixes Japanese IME
+- Prevents app nap from suspending the macOS app
 
 Hosted version available at https://cinny.d.pn
 
